@@ -11,3 +11,17 @@
     presentGameResult() - present results to the player
 
 */
+
+giveIntro();
+
+function giveIntro() {
+    alert(`
+Welcome to the Rock, Paper and Scissors.
+It's a simple game where you pick one of the options and play against the computer.
+
+Rules:
+- 5 rounds
+- each won run gives you 1 point
+- the player with higher amount of points wins
+    `);
+}
