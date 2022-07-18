@@ -13,6 +13,9 @@
 */
 
 giveIntro();
+for (let i = 0 ; i < 5 ; i++) {
+    presentQuestion();
+}
 
 function giveIntro() {
     alert(`
@@ -24,4 +27,8 @@ Rules:
 - each won run gives you 1 point
 - the player with higher amount of points wins
     `);
+}
+
+function presentQuestion() {
+    let choice = prompt('Make your choice (rock, paper, scissors): ');
 }
