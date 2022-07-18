@@ -32,3 +32,12 @@ Rules:
 function presentQuestion() {
     let choice = prompt('Make your choice (rock, paper, scissors): ');
 }
+
+const choiceRock = 'ROCK';
+const choicePaper = 'PAPER';
+const choiceScissors = 'SCISSORS';
+
+function isInputValid(input) {
+    inputUpper = input.toString().toUpper();
+    return [choiceRock, choicePaper, choiceScissors].includes(inputUpper);
+}
