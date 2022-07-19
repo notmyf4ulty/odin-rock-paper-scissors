@@ -23,6 +23,10 @@ const WHAT_BEATS_WHAT = {
     CHOICE_PAPER: CHOICE_ROCK,
     CHOICE_SCISSORS: CHOICE_PAPER
 };
+const scoreTable = {
+    player: 0,
+    computer: 0
+};
 
 giveIntro();
 for (let i = 0 ; i < ROUNDS_NUMBER ; i++) {
@@ -47,6 +51,7 @@ function playSingeGame() {
     if (isChoiceValid(playerChoice)) {
         let computerChoice = shuffleComputerChoice();
         console.log('computerChoice: ' + computerChoice);
+        scorePoint(playerChoice, computerChoice);
     }
 }
 
@@ -62,4 +67,12 @@ function isChoiceValid(input) {
 function shuffleComputerChoice() {
     let choiceIndex = parseInt(Math.floor(Math.random() * 3));
     return VALID_CHOICES[choiceIndex];
+}
+
+function scorePoint(playerChoice, computerChoice) {
+    if (WHAT_BEATS_WHAT[playerChoice] === computerChoice) {
+        scoreTable[player]++;
+    } else if (WHAT_BEATS_WHAT[computerChoice] === playerChoice) {
+        scoreTable[computerChoice]++;
+    }
 }
