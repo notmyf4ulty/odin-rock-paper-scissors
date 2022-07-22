@@ -14,47 +14,68 @@
 
 const ROUNDS_NUMBER = 5;
 
+const INTRO_MESSAGE =
+`Welcome to the Rock, Paper and Scissors.
+It's a simple game where you pick one of the options and play against the computer.
+
+Rules:
+- ${ROUNDS_NUMBER} rounds
+- each won run gives you 1 point
+- the player with higher amount of points wins`;
+
+
+
 const CHOICE_ROCK = 'R';
 const CHOICE_PAPER = 'P';
 const CHOICE_SCISSORS = 'S';
 const VALID_CHOICES = [CHOICE_ROCK, CHOICE_PAPER, CHOICE_SCISSORS];
 const WHAT_BEATS_WHAT = {
-    CHOICE_ROCK: CHOICE_SCISSORS,
-    CHOICE_PAPER: CHOICE_ROCK,
-    CHOICE_SCISSORS: CHOICE_PAPER
+    [CHOICE_ROCK]: CHOICE_SCISSORS,
+    [CHOICE_PAPER]: CHOICE_ROCK,
+    [CHOICE_SCISSORS]: CHOICE_PAPER
 };
 const scoreTable = {
     player: 0,
     computer: 0
 };
 
+// GAME LOGIC START
+// vvvvvvvvvvvvvvvv
+
 giveIntro();
 for (let i = 0 ; i < ROUNDS_NUMBER ; i++) {
     playSingeGame();
 }
-presentGameResult();
+presentGameResult('Final Score');
+
+// ^^^^^^^^^^^^^^^
+// GAME LOGIC STOP
+
+
+// FUNCTION DEFINITIONS
+// vvvvvvvvvvvvvvvvvvvv
 
 function giveIntro() {
-    alert(`
-Welcome to the Rock, Paper and Scissors.
-It's a simple game where you pick one of the options and play against the computer.
-
-Rules:
-- ${ROUNDS_NUMBER} rounds
-- each won run gives you 1 point
-- the player with higher amount of points wins
-    `);
+    alert(INTRO_MESSAGE);
 }
 
 function playSingeGame() {
-    let playerChoice = promptForChoice().toString().toUpperCase();
+    let playerChoice = shuffleComputerChoice();
+    let computerChoice;
     console.log('playerChoice: ' + playerChoice);
     if (isChoiceValid(playerChoice)) {
-        let computerChoice = shuffleComputerChoice();
+        computerChoice = shuffleComputerChoice();
         console.log('computerChoice: ' + computerChoice);
         scorePoint(playerChoice, computerChoice);
     }
+    presentGameResult(
+        `Player choice: ${playerChoice}\nComputer choice: ${computerChoice}\nCurrent Score`
+    );
+}
 
+function getPlayerChoice() {
+    // return promptForChoice().toString().toUpperCase();
+    return shuffleComputerChoice();
 }
 
 function promptForChoice() {
@@ -78,15 +99,15 @@ function shuffleComputerChoice() {
 
 function scorePoint(playerChoice, computerChoice) {
     if (WHAT_BEATS_WHAT[playerChoice] === computerChoice) {
-        scoreTable[player]++;
+        scoreTable.player++;
     } else if (WHAT_BEATS_WHAT[computerChoice] === playerChoice) {
-        scoreTable[computerChoice]++;
+        scoreTable.computer++;
     }
 }
 
-function presentGameResult() {
+function presentGameResult(gameResultTitle) {
     alert(
-        `Final score
+        `${gameResultTitle}
         - Player: ${scoreTable.player}
         - Computer: ${scoreTable.computer}
         `
