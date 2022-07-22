@@ -32,6 +32,7 @@ giveIntro();
 for (let i = 0 ; i < ROUNDS_NUMBER ; i++) {
     playSingeGame();
 }
+presentGameResult();
 
 function giveIntro() {
     alert(`
@@ -53,6 +54,7 @@ function playSingeGame() {
         console.log('computerChoice: ' + computerChoice);
         scorePoint(playerChoice, computerChoice);
     }
+
 }
 
 function promptForChoice() {
@@ -80,4 +82,13 @@ function scorePoint(playerChoice, computerChoice) {
     } else if (WHAT_BEATS_WHAT[computerChoice] === playerChoice) {
         scoreTable[computerChoice]++;
     }
+}
+
+function presentGameResult() {
+    alert(
+        `Final score
+        - Player: ${scoreTable.player}
+        - Computer: ${scoreTable.computer}
+        `
+    );
 }
