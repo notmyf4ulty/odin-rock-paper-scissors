@@ -14,9 +14,9 @@
 
 const ROUNDS_NUMBER = 5;
 
-const CHOICE_ROCK = 'ROCK';
-const CHOICE_PAPER = 'PAPER';
-const CHOICE_SCISSORS = 'SCISSORS';
+const CHOICE_ROCK = 'R';
+const CHOICE_PAPER = 'P';
+const CHOICE_SCISSORS = 'S';
 const VALID_CHOICES = [CHOICE_ROCK, CHOICE_PAPER, CHOICE_SCISSORS];
 const WHAT_BEATS_WHAT = {
     CHOICE_ROCK: CHOICE_SCISSORS,
@@ -56,7 +56,12 @@ function playSingeGame() {
 }
 
 function promptForChoice() {
-    return prompt('Make your choice (rock, paper, scissors): ');
+    return prompt(
+        `Make your choice:
+        - '${CHOICE_ROCK}' for Rock
+        - '${CHOICE_PAPER}' for Paper
+        - '${CHOICE_SCISSORS}' for Scissors`
+    );
 }
 
 function isChoiceValid(input) {
