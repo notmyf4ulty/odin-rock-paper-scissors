@@ -43,11 +43,11 @@ const scoreTable = {
 // vvvvvvvvvvvvvvvv
 
 giveIntro();
-for (let i = 0 ; i < ROUNDS_NUMBER ; i++) {
-    playSingeGame();
-}
+// for (let i = 0 ; i < ROUNDS_NUMBER ; i++) {
+//     playSingeGame();
+// }
 // presentGameResult('Final Score');
-alert(getFinalMessage());
+// alert(getFinalMessage());
 
 // ^^^^^^^^^^^^^^^
 // GAME LOGIC STOP
