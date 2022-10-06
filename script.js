@@ -12,7 +12,7 @@
 
 */
 
-const ROUNDS_NUMBER = 5;
+const ROUNDS_NUMBER = 1;
 
 const INTRO_MESSAGE =
 `Welcome to the Rock, Paper and Scissors.
@@ -46,7 +46,8 @@ giveIntro();
 for (let i = 0 ; i < ROUNDS_NUMBER ; i++) {
     playSingeGame();
 }
-presentGameResult('Final Score');
+// presentGameResult('Final Score');
+alert(getFinalMessage());
 
 // ^^^^^^^^^^^^^^^
 // GAME LOGIC STOP
@@ -60,7 +61,7 @@ function giveIntro() {
 }
 
 function playSingeGame() {
-    let playerChoice = shuffleComputerChoice();
+    let playerChoice = getPlayerChoice();
     let computerChoice;
     console.log('playerChoice: ' + playerChoice);
     if (isChoiceValid(playerChoice)) {
@@ -74,7 +75,7 @@ function playSingeGame() {
 }
 
 function getPlayerChoice() {
-    // return promptForChoice().toString().toUpperCase();
+    return promptForChoice().toString().toUpperCase();
     return shuffleComputerChoice();
 }
 
@@ -112,4 +113,8 @@ function presentGameResult(gameResultTitle) {
         - Computer: ${scoreTable.computer}
         `
     );
+}
+
+function getFinalMessage() {
+    return scoreTable.player > scoreTable.computer ? 'Player wins!' : scoreTable.player === scoreTable.computer ? 'Draw!' : 'Computer wins!';
 }
